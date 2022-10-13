@@ -11,9 +11,17 @@ public enum Filter {
    */
   SOBEL(0),
   /**
+   * Sobel filter 5x5.
+   */
+  SOBEL_5(1),
+  /**
+   * Sobel filter 7x7.
+   */
+  SOBEL_7(2),
+  /**
    * Prewitt filter for finding edges in images.
    */
-  PREWITT(1),
+  PREWITT(3),
   /**
    * Custom but experimental filter.
    */
@@ -29,6 +37,22 @@ public enum Filter {
 
     return switch (type) {
       case 0 -> new int[][] { { -1, -2, -1 }, { 0, 0, 0 }, { 1, 2, 1 } };
+      case 2 -> new int[][] {
+          { 1, 4, 7, 4, 1 },
+          { 2, 10, 17, 10, 2 },
+          { 0, 0, 0, 0, 0 },
+          { -1, -4, -7, -4, -1 },
+          { -2, -10, -17, -10, -2 },
+          };
+      case 3 -> new int[][] {
+          { 1, 4, 9, 13, 9, 4, 1 },
+          { 3, 11, 26, 34, 26, 11, 3 },
+          { 3, 13, 30, 40, 30, 13, 3 },
+          { 0, 0, 0, 0, 0, 0, 0 },
+          { -1, -4, -9, -13, -9, -4, -1 },
+          { -3, -11, -26, -34, -26, -11, -3 },
+          { -3, -13, -30, -40, -30, -13, -3 },
+          };
       case -1 -> new int[][] {
           { -1, -2, -4, -8, -4, -2, -1 },
           { -1, -3, -9, -27, -9, -3, -1 },
@@ -51,6 +75,8 @@ public enum Filter {
 
     return switch (type) {
       case 0 -> 8;
+      case 1 -> 116;
+      case 2 -> 574;
       case -1 -> 342;
       default -> 6;
     };
