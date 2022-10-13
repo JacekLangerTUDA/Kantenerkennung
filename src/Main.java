@@ -24,7 +24,7 @@ public class Main {
 //    }
 
     Edgeparser filter = new Edgeparser(in);
-    var image = filter.findEdges(Filter.CUSTOM);
+    var image = filter.findEdges(Filter.SOBEL_5);
 
     File out = new File(String.format("results/%s", in.getName()));
 
